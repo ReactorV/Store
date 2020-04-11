@@ -1,1 +1,3 @@
-export { default } from './component';
+import withBookstoreService from './component';
+
+export { withBookstoreService };

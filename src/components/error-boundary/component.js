@@ -1,4 +1,5 @@
 import React from 'react';
+
 import ErrorIndicator from '../error-indicator';
 
 import './index';
@@ -18,7 +19,7 @@ class ErrorBoundary extends React.PureComponent {
         const { hasError } = this.state;
 
         if (hasError) {
-            return <ErrorIndicator/>
+            return <ErrorIndicator />
         }
 
         return (

@@ -9,10 +9,12 @@ import { BookstoreServiceProvider } from './components/bookstore-service-context
 import ErrorBoundary from './components/error-boundary';
 import store from './store';
 
+const bookstoreService = new BookStoreService();
+
 ReactDOM.render(
     <Provider store={store}>
         <ErrorBoundary>
-            <BookstoreServiceProvider value={BookStoreService}>
+            <BookstoreServiceProvider value={bookstoreService}>
                 <Router>
                     <App />
                 </Router>
