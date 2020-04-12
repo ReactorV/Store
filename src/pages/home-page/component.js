@@ -7,16 +7,7 @@ import './index';
 class HomePage extends React.PureComponent {
     render() {
         const books = [
-            {
-                id: 3434,
-                title: 'Learn JS ',
-                author: 'L.James'
-            },
-            {
-                id: 4444,
-                title: 'Learn React ',
-                author: 'L.Jonson'
-            }
+
         ];
 
         return (

@@ -5,6 +5,15 @@ import BoolListItem from '../book-list-item';
 import './index';
 
 class BookList extends React.PureComponent {
+
+    componentDidMount() {
+        const { bookstoreService } = this.props;
+
+        const books = bookstoreService.getBooks();
+
+        this.props.booksLoaded(books);
+    }
+
     render() {
         const { books } = this.props;
 
