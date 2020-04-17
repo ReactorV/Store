@@ -5,8 +5,8 @@ import { withBookstoreService } from '../hoc/withBookstoreService';
 import { booksLoaded } from '../../actions/booksLoaded';
 import utils from '../../utils/utils';
 
-const mapStateToProps = ({ books }) => {
-    return { books };
+const mapStateToProps = ({ books, loading }) => {
+    return { books, loading };
 };
 
 const mapDispatchToProps = {

@@ -1,16 +1,23 @@
 import React from 'react';
 
-import './index';
+import './index.css';
 
 class BookListItem extends React.PureComponent {
     render() {
         const { book } = this.props;
 
             return (
-                <>
-                    <span>{book.title}</span>
-                    <span>{book.author}</span>
-                </>
+                <div className="book-list-item">
+                    <div className="book-cover">
+                        <img src={book.coverImage} alt=""/>
+                    </div>
+                    <div className="book-details">
+                        <span className="book-title">{book.title}</span>
+                        <div>{book.author}</div>
+                        <div>{book.price}$</div>
+                        <button className="btn btn-info add-to-cart">Add to cart</button>
+                    </div>
+                </div>
             );
     }
 }

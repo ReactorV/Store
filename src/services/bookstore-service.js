@@ -1,19 +1,29 @@
 import React from 'react';
 
 class BookstoreService extends React.PureComponent {
-    getBooks = () => {
-        return [
-            {
+    data = [
+        {
                 id: 3434,
-                title: 'Learn JS',
-                author: 'L. James'
+                title: 'JS for Professionals',
+                author: 'L. James',
+                price: 24,
+                coverImage: 'https://images-na.ssl-images-amazon.com/images/I/41yJ75gpV-L._SX381_BO1,204,203,200_.jpg'
             },
             {
                 id: 4444,
                 title: 'Learn React',
-                author: 'L. Jonson'
+                author: 'L. Jonson',
+                price: 33,
+                coverImage: 'https://images-na.ssl-images-amazon.com/images/I/41yJ75gpV-L._SX381_BO1,204,203,200_.jpg'
             }
-        ]
+    ];
+
+    getBooks = () => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(this.data)
+            }, 700)
+        })
     };
 }
 
