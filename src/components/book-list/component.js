@@ -2,30 +2,24 @@ import React from 'react';
 
 import BoolListItem from '../book-list-item';
 import Preloader from '../preloader';
+import ErrorIndicator from '../error-indicator';
 
 import './index.css';
 
 class BookList extends React.PureComponent {
-
     componentDidMount() {
-        const { bookstoreService, booksLoaded } = this.props;
-
-        bookstoreService.getBooks()
-            .then((books) => {
-                booksLoaded(books);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
-
+        this.loadBooks();
     }
 
     render() {
-        const { books, loading } = this.props;
+        const { books, loading, error } = this.props;
 
         if (loading) {
             return <Preloader />
+        }
+
+        if (error) {
+            return <ErrorIndicator />
         }
 
         return (
@@ -41,6 +35,24 @@ class BookList extends React.PureComponent {
                     }
                 </ul>
         );
+    }
+
+    loadBooks = () => {
+        const {
+            bookstoreService,
+            booksLoaded,
+            booksRequested,
+            booksError
+        } = this.props;
+
+        booksRequested();
+        bookstoreService.getBooks()
+            .then((books) => {
+                booksLoaded(books);
+            })
+            .catch((error) => {
+                booksError(error);
+            });
     }
 }
 
