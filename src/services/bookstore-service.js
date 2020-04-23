@@ -25,8 +25,8 @@ class BookstoreService extends React.PureComponent {
                     reject(new Error('Woops! Something went wrong'));
                 }
                 resolve(this.data)
-            }, 700);
-        });
+            }, 700)
+        })
     };
 }
 

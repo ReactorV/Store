@@ -8,7 +8,7 @@ import './index.css';
 
 class BookList extends React.PureComponent {
     componentDidMount() {
-        this.loadBooks();
+        this.props.fetchBooks();
     }
 
     render() {
