@@ -6,7 +6,23 @@ import ErrorIndicator from '../error-indicator';
 
 import './index.css';
 
-class BookList extends React.PureComponent {
+const BookList = ({ books }) => {
+    return (
+        <ul className="book-list">
+            {
+                books.map((book) => {
+                    return (
+                        <li key={book.id}>
+                            <BoolListItem book={book}/>
+                        </li>
+                    );
+                })
+            }
+        </ul>
+    );
+};
+
+class BookListContainer extends React.PureComponent {
     componentDidMount() {
         this.props.fetchBooks();
     }
@@ -22,38 +38,10 @@ class BookList extends React.PureComponent {
             return <ErrorIndicator />
         }
 
-        return (
-                <ul className="book-list">
-                    {
-                        books.map((book) => {
-                            return (
-                                <li key={book.id}>
-                                    <BoolListItem book={book}/>
-                                </li>
-                            );
-                        })
-                    }
-                </ul>
-        );
-    }
-
-    loadBooks = () => {
-        const {
-            bookstoreService,
-            booksLoaded,
-            booksRequested,
-            booksError
-        } = this.props;
-
-        booksRequested();
-        bookstoreService.getBooks()
-            .then((books) => {
-                booksLoaded(books);
-            })
-            .catch((error) => {
-                booksError(error);
-            });
+        return <BookList books={books} />
     }
 }
 
-export default BookList;
+
+
+export default BookListContainer;
