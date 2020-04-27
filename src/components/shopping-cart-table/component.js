@@ -2,12 +2,17 @@ import React from 'react';
 
 import './index.css';
 
-const ShoppingCartTable = () => {
-    return (
-        <div className="shopping-cart-table">
-            <h2>Your Order</h2>
-            <table className="table">
-                <thead>
+class ShoppingCartTable extends React.PureComponent {
+    render () {
+        const { total } = this.props;
+
+        const cartBooksOutput = this.renderCartBooks();
+
+        return (
+            <div className="shopping-cart-table">
+                <h2>Your Order</h2>
+                <table className="table">
+                    <thead>
                     <tr>
                         <th>#</th>
                         <th>Item</th>
@@ -15,34 +20,53 @@ const ShoppingCartTable = () => {
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
-                </thead>
+                    </thead>
 
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Site Reliability Engineering</td>
-                    <td>2</td>
-                    <td>$40</td>
+                    <tbody>
+                        {cartBooksOutput}
+                    </tbody>
+                </table>
+
+                <div className="total">
+                    Total: ${total}
+                </div>
+            </div>
+        );
+    }
+
+    renderCartBooks = () => {
+        const { items, onIncrease, onDecrease, onDelete } = this.props;
+
+        return items.map((item, index) => {
+            const { id, title, count, total } = item;
+
+            return (
+                <tr key={id}>
+                    <td>{index + 1}</td>
+                    <td>{title}</td>
+                    <td>{count}</td>
+                    <td>${total}</td>
                     <td>
-                        <button className="btn btn-outline-danger btn-sm float-right">
+                        <button
+                            onClick={() => onDelete(id)}
+                            className="btn btn-outline-danger btn-sm float-right">
                             <i className="fa fa-trash-o" />
                         </button>
-                        <button className="btn btn-outline-success btn-sm float-right">
+                        <button
+                            onClick={() => onIncrease(id)}
+                            className="btn btn-outline-success btn-sm float-right">
                             <i className="fa fa-plus-circle" />
                         </button>
-                        <button className="btn btn-outline-warning btn-sm float-right">
+                        <button
+                            onClick={() => onDecrease(id)}
+                            className="btn btn-outline-warning btn-sm float-right">
                             <i className="fa fa-minus-circle" />
                         </button>
                     </td>
                 </tr>
-                </tbody>
-            </table>
-
-            <div className="total">
-                Total: $201
-            </div>
-        </div>
-    );
-};
+            );
+        });
+    }
+}
 
 export default ShoppingCartTable;

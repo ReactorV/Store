@@ -1,19 +1,21 @@
 import React from 'react';
 
-import BoolListItem from '../book-list-item';
+import BookListItem from '../book-list-item';
 import Preloader from '../preloader';
 import ErrorIndicator from '../error-indicator';
 
 import './index.css';
 
-const BookList = ({ books }) => {
+const BookList = ({ books, onAddedToCart }) => {
     return (
         <ul className="book-list">
             {
                 books.map((book) => {
                     return (
                         <li key={book.id}>
-                            <BoolListItem book={book}/>
+                            <BookListItem
+                                onAddedToCart={() => onAddedToCart(book.id)}
+                                book={book}/>
                         </li>
                     );
                 })
@@ -28,7 +30,7 @@ class BookListContainer extends React.PureComponent {
     }
 
     render() {
-        const { books, loading, error } = this.props;
+        const { books, loading, error, onAddedToCart } = this.props;
 
         if (loading) {
             return <Preloader />
@@ -38,7 +40,11 @@ class BookListContainer extends React.PureComponent {
             return <ErrorIndicator />
         }
 
-        return <BookList books={books} />
+        return (
+            <BookList
+                onAddedToCart={onAddedToCart}
+                books={books} />
+        );
     }
 }
 

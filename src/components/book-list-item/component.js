@@ -4,7 +4,7 @@ import './index.css';
 
 class BookListItem extends React.PureComponent {
     render() {
-        const { book } = this.props;
+        const { book, onAddedToCart } = this.props;
 
             return (
                 <div className="book-list-item">
@@ -15,7 +15,12 @@ class BookListItem extends React.PureComponent {
                         <span className="book-title">{book.title}</span>
                         <div>{book.author}</div>
                         <div>{book.price}$</div>
-                        <button className="btn btn-info add-to-cart">Add to cart</button>
+                        <button
+                            onClick={onAddedToCart}
+                            className="btn btn-info add-to-cart"
+                        >
+                            Add to cart
+                        </button>
                     </div>
                 </div>
             );

@@ -2,7 +2,7 @@ import BookListContainer from './component';
 
 import { connect } from 'react-redux';
 import { withBookstoreService } from '../hoc/withBookstoreService';
-import { fetchBooks } from '../../actions/booksLoaded';
+import { fetchBooks, addBookToCart } from '../../actions/booksLoaded';
 import utils from '../../utils/utils';
 
 const mapStateToProps = ({ books, loading, error }) => {
@@ -13,7 +13,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const { bookstoreService } = ownProps;
 
     return {
-        fetchBooks: fetchBooks(bookstoreService, dispatch)
+        fetchBooks: fetchBooks(bookstoreService, dispatch),
+        onAddedToCart: (Id) => dispatch(addBookToCart(Id))
     };
 };
 
