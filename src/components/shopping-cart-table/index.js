@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { deleteBookFromCart, addBookToCart, deleteAllBooksFromCart } from '../../actions/booksLoaded';
 
-const mapStateToProps = ({cartItems, orderTotal}) => {
+const mapStateToProps = ({ shoppingCart: { cartItems, orderTotal }}) => {
     return {
         items: cartItems,
         total: orderTotal

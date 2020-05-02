@@ -5,7 +5,7 @@ import { withBookstoreService } from '../hoc/withBookstoreService';
 import { fetchBooks, addBookToCart } from '../../actions/booksLoaded';
 import utils from '../../utils/utils';
 
-const mapStateToProps = ({ books, loading, error }) => {
+const mapStateToProps = ({ bookList: { books, loading, error }}) => {
     return { books, loading, error };
 };
 
