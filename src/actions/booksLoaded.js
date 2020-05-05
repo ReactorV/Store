@@ -39,9 +39,21 @@ const deleteBookFromCart = (bookId) => {
     }
 };
 
-const fetchBooks = (bookstoreService, dispatch) => () => {
+//For using without Thunk
+/*const fetchBooksOld = (bookstoreService, dispatch) => () => {
       dispatch(booksRequested());
       bookstoreService.getBooks()
+        .then((books) => {
+            dispatch(booksLoaded(books));
+        })
+        .catch((error) => {
+            dispatch(booksError(error));
+        });
+};*/
+
+const fetchBooks = (bookstoreService) => () => (dispatch) => {
+    dispatch(booksRequested());
+    bookstoreService.getBooks()
         .then((books) => {
             dispatch(booksLoaded(books));
         })
